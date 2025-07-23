@@ -1,0 +1,94 @@
+import {useEffect, useRef, useState} from "react";
+import {useDimensions} from "@/hooks/useDimension.ts";
+import {useQuery} from "@tanstack/react-query";
+import {fetchClusteredData} from "@/Query/fetchClusteredData.ts";
+import {SectionCards} from "@/components/sidebar-components/section-card.tsx";
+import {RenderScatterPlot} from "@/components/charts/ScatterPlot.tsx";
+import {TabChartType} from "@/components/charts/TabChartType.tsx";
+import {
+    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
+     DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import {ChartNetwork, MoveRightIcon, SlidersHorizontal} from "lucide-react";
+import type {IStudentData} from "@/Types.ts";
+
+export default function Dashboard() {
+
+    const targetRef = useRef<HTMLDivElement>(null);
+    const dimensions = useDimensions(targetRef);
+    const WIDTH=dimensions?.width || 0
+    const HEIGHT=400
+    const {data}=useQuery(fetchClusteredData())
+    const [plotData,setPlotData]=useState<IStudentData[]>(data ?? [])
+
+    useEffect(()=>{
+        if (data) setPlotData(data.slice(0,200))
+    },[data])
+    const SliceDataPlot=(divider:number)=>{
+       if (data) setPlotData(data.slice(0,data.length /divider))
+    }
+
+    return (
+        <div>
+            <div className="flex flex-1 flex-col gap-4 p-4">
+                <SectionCards/>
+                <section className="grid-cols-1 lg:grid-cols-2 gap-4 h-full grid">
+
+                    <div ref={targetRef} className="  grid grid-cols-1 h-full">
+                        {data &&
+                            <div className="shadow-sm border h-full rounded-lg " >
+                                <div className="flex place-items-center justify-between  px-6 pt-4">
+                                    <div className="pt-4">
+                                        <h1 className="CircularFont leading-3 dark:text-white text-[#212121]/90 font-bold text-2xl">
+                                            Student Clustering Overview
+                                        </h1>
+                                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                                            This overview shows how students are grouped based on their GWA (General Weighted Average) and family income.
+                                        </p>
+                                    </div>
+
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className={"p-0"}><SlidersHorizontal/></Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="" align="start">
+                                            <DropdownMenuLabel className="CircularFont pb-0 flex justify-between ">Data Range <ChartNetwork size={16}/></DropdownMenuLabel>
+                                            <DropdownMenuSeparator/>
+                                            <DropdownMenuGroup>
+                                                {Array.from({ length: 3 }).map((_, index) => {
+                                                    const total = data.length;
+                                                    const step = Math.floor(total / 3);
+                                                    const start = index === 0 ? 0 : index * step;
+                                                    const end = index === 2 ? total : (index + 1) * step;
+
+                                                    return (
+                                                        <DropdownMenuItem className="CircularFont"  key={index} onClick={() => SliceDataPlot(3-index)}>
+                                                            {start} <MoveRightIcon /> {end}
+                                                        </DropdownMenuItem>
+                                                    );
+                                                })}
+
+                                            </DropdownMenuGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                                <RenderScatterPlot width={WIDTH} height={HEIGHT} data={plotData}/>
+
+                            </div>
+                        }
+
+
+                    </div>
+                    <div  className="w-full h-full shadow-sm border rounded-lg ">
+                        <div className="px-7 pt-7">
+                            <h1 className="CircularFont dark:text-white text-[#212121]/90 font-bold text-2xl">Category</h1>
+                        </div>
+                        <TabChartType/>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    )
+}
