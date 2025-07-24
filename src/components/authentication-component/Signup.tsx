@@ -100,7 +100,7 @@ export default function Signup() {
                             </div>
                             <Button variant="outline" className="w-full CircularFont">
                                 <img className="w-[20px] h-[20px]" src={GOOGLEICON}/>
-                                Continue with Google
+                                 Google
                             </Button>
                         </div>
                         <div className="text-center CircularFont text-sm">

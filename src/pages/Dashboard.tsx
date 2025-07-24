@@ -14,6 +14,7 @@ import {ChartNetwork, MoveRightIcon, SlidersHorizontal} from "lucide-react";
 import type {IStudentData} from "@/Types.ts";
 import LoadingState from "@/components/feature/LoadingState.tsx";
 
+
 export default function Dashboard() {
 
     const targetRef = useRef<HTMLDivElement>(null);
@@ -83,11 +84,16 @@ export default function Dashboard() {
 
 
                     </div>
-                    <div  className="w-full h-full shadow-sm border rounded-lg ">
-                        <div className="px-7 pt-7">
-                            <h1 className="CircularFont dark:text-white text-[#212121]/90 font-bold text-2xl">Category</h1>
+                    <div className="w-full h-full ">
+                        <div  className=" shadow-sm border rounded-lg ">
+                            <div className="px-7 pt-7">
+                                <h1 className="CircularFont dark:text-white text-[#212121]/90 font-bold text-2xl">Category</h1>
+
+                            </div>
+
+
+                            <TabChartType/>
                         </div>
-                        <TabChartType/>
                     </div>
                 </section>
 
