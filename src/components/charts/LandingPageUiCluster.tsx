@@ -163,16 +163,16 @@ export const Tooltip = ({
 
 export const RenderClusterUi = () => {
     return (
-        <div className="grid w-full    gap-1 grid-cols-2 ">
-            <div className="relative h-[300px] responsive-box w-full">
-                <div className="responsive w-full h-full absolute left-10 -top-2 ">
+        <div className="grid w-full h-full parent-box   gap-1 grid-cols-2 ">
+            <div className="relative      responsive-box w-full">
+                <div className="responsive w-full h-full absolute   ">
                     <CircleCluster rotate={70} backgroundColor="#35DEA9" borderColor="#35DEA9">
                     </CircleCluster>
                 </div>
 
             </div>
 
-            <div className=" relative h-[300px] responsive-box w-full">
+            <div className=" relative  responsive-box w-full">
                 <div className="w-full responsive h-full absolute -left-40 ">
                     <CircleCluster rotate={200} backgroundColor="#35DEA9" borderColor="#35DEA9">
                         <Circle size={20} top={20} left={45} backgroundColor="#35DEA9" borderColor="#35DEA9"/>
@@ -194,8 +194,8 @@ export const RenderClusterUi = () => {
                 </div>
 
             </div>
-            <div className=" relative h-[300px] responsive-box w-full">
-                <div className="w-full responsive-bottom h-full absolute -top-20 left-10 ">
+            <div className=" relative  responsive-box w-full">
+                <div className="w-full responsive-bottom h-full absolute -top-15 left-10 ">
                     <CircleCluster rotate={10} backgroundColor="#FF8E8E" borderColor="#FF8E8E">
                         <div></div>
                     </CircleCluster>
@@ -212,7 +212,7 @@ export const RenderClusterUi = () => {
                 </div>
 
             </div>
-            <div className=" relative h-[300px] responsive-box w-full">
+            <div className=" relative   responsive-box w-full">
                 <div className="w-full responsive-bottom h-full absolute -left-30 -top-30">
                     <CircleCluster rotate={230} backgroundColor="#89ACFF" borderColor="#89ACFF">
 

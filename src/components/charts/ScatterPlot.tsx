@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import {AxisLeft} from "@/components/charts/AxisLeft.tsx";
 import {AxisBottom} from "@/components/charts/AxisBottom.tsx";
 import type {IStudentData} from "@/Types.ts";
-const MARGIN = { top: 30, right: 60, bottom: 60, left: 60 };
+const MARGIN = { top: 30, right: 50, bottom: 60, left: 60 };
 
 type ScatterPlotProps = {
     width: number;

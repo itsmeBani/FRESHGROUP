@@ -22,7 +22,7 @@ export default function Login() {
 
 
     return (
-        <section className="flex flex-row place-items-center justify-center h-[100dvh]">
+        <section className="flex overflow-hidden flex-row place-items-center justify-center h-[100dvh]">
             <div className="w-full md:w-full  lg:w-1/2 justify-start p-5 lg:p-10 flex ">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(SignInWithEmail)} className="w-full  space-y-4">
@@ -105,19 +105,25 @@ export default function Login() {
                 </Form>
             </div>
 
-            <div className="overflow-hidden bg-image hidden md:block flex h-full bg-blue-200 w-full">
+            {/*<div className="bg-image hidden    md:block flex h-full bg-blue-200 w-full">*/}
 
-                <div className="flex p-5 pt-10 flex-col     w-full justify-center place-items-center">
-                    <h1 className="text-6xl text-white text-center Kerif uppercase ">Welcome to FreshGroup</h1>
-                    <p className="text-center bg-pink text-white">We use unsupervised machine learning to cluster
-                        first-year students based on shared traits like academic performance, background, and interests.
-                        These insights help schools personalize support and improve student outcomes from the
-                        beginning.</p>
-                </div>
 
-                <RenderClusterUi/>
 
-            </div>
+            {/*    /!*<RenderClusterUi/>*!/*/}
+            {/*    <div className="flex flex-1 bg-pink-200 w-full h-full">*/}
+
+            {/*    </div>*/}
+            {/*</div>*/}
+          <div className="bg-image hidden transform   md:flex  flex flex-col w-full h-full">
+              <div className="flex p-5 pt-10 flex-col     w-full justify-center place-items-center">
+                  <h1 className="md:text-3xl lg:text-6xl text-white text-center Kerif uppercase ">Welcome to FreshGroup</h1>
+                  <p className="md:text-xs lg:text-lg text-center  text-white">We use unsupervised machine learning to cluster
+                      first-year students based on shared traits like academic performance, background, and interests.
+                      These insights help schools personalize support and improve student outcomes from the
+                      beginning.</p>
+              </div>
+              <RenderClusterUi/>
+          </div>
         </section>
     )
 }

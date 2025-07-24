@@ -1,18 +1,26 @@
 import {Input} from "@/components/ui/input.tsx"
 import {Button} from "@/components/ui/button.tsx"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useAuth} from "@/contexts/AuthContext.tsx";
 import {useEffect} from "react";
 import {supabase} from "@/utils/supabase.ts";
 import {Loader} from "lucide-react";
+import {toast} from "sonner";
 
 
 export default function CreateNewPassword() {
     const {CreatePasswordForm, HandleConfirmNewPassword,loading} = useAuth()
     const navigate = useNavigate()
+    const location = useLocation();
     useEffect(() => {
+        const hashParams = new URLSearchParams(location.hash.slice(1));
+        const errorCode = hashParams.get('error_code');
+        if (errorCode === 'otp_expired') {
 
+            toast.error("The password reset link has expired")
+
+        }
         const {data: {subscription}} = supabase.auth.onAuthStateChange(
             (event) => {
                 if (event === 'USER_UPDATED') {
@@ -27,6 +35,9 @@ export default function CreateNewPassword() {
             subscription.unsubscribe()
         }
     }, [])
+
+
+
 
     return (
         <div className="flex justify-center h-[100dvh] flex-col items-center   py-12 px-4 ">

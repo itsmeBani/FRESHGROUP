@@ -10,9 +10,9 @@ import {Loader} from "lucide-react";
 
 
 
+
 export default function ForgotPassword() {
 const {HandleResetPassword,resetPasswordForm,loading}=useAuth()
-
 
 
     return (
@@ -27,7 +27,6 @@ const {HandleResetPassword,resetPasswordForm,loading}=useAuth()
                         password.
                     </p>
                 </div>
-
 
                 <Form {...resetPasswordForm}>
                     <form onSubmit={resetPasswordForm.handleSubmit(HandleResetPassword)} className="w-full space-y-4">

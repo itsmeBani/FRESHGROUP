@@ -225,7 +225,7 @@ function PermissionPage() {
                                         {row?.original.role?.role_permission.map((permission) => {
 
                                             return (
-                                                <div className="w-full hover:bg-gray-100 px-3 py-3 ">
+                                                <div className="w-full hover:bg-gray-100/10 px-3 py-3 ">
                                                     <h1 className="CircularFont text-[13px]">{permission?.permission?.permission_name}</h1>
                                                     <p className=" text-muted-foreground leading-2 text-[14px]">{permission?.permission?.Description}</p>
                                                 </div>

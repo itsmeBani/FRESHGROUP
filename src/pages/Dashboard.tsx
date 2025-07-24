@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import {ChartNetwork, MoveRightIcon, SlidersHorizontal} from "lucide-react";
 import type {IStudentData} from "@/Types.ts";
+import LoadingState from "@/components/feature/LoadingState.tsx";
 
 export default function Dashboard() {
 
@@ -19,7 +20,7 @@ export default function Dashboard() {
     const dimensions = useDimensions(targetRef);
     const WIDTH=dimensions?.width || 0
     const HEIGHT=400
-    const {data}=useQuery(fetchClusteredData())
+    const {data,isPending}=useQuery(fetchClusteredData())
     const [plotData,setPlotData]=useState<IStudentData[]>(data ?? [])
 
     useEffect(()=>{
@@ -30,20 +31,22 @@ export default function Dashboard() {
     }
 
     return (
-        <div>
-            <div className="flex flex-1 flex-col gap-4 p-4">
+        <div className="">
+            {isPending && <LoadingState/>}
+            <div className="flex relative flex-1 flex-col gap-4 p-4">
+
                 <SectionCards/>
                 <section className="grid-cols-1 lg:grid-cols-2 gap-4 h-full grid">
 
-                    <div ref={targetRef} className="  grid grid-cols-1 h-full">
+                    <div ref={targetRef} className=" grid grid-cols-1 h-full">
                         {data &&
                             <div className="shadow-sm border h-full rounded-lg " >
-                                <div className="flex place-items-center justify-between  px-6 pt-4">
-                                    <div className="pt-4">
-                                        <h1 className="CircularFont leading-3 dark:text-white text-[#212121]/90 font-bold text-2xl">
+                                <div className="flex place-items-center justify-between  p-4 lg:px-6 lg:pt-4">
+                                    <div className="lg:pt-4">
+                                        <h1 className="CircularFont leading-4 lg:leading-3 dark:text-white text-[#212121]/90 font-bold lg:text-2xl">
                                             Student Clustering Overview
                                         </h1>
-                                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                                        <p className="mt-2 text-xs lg:text-sm text-gray-600 dark:text-gray-300">
                                             This overview shows how students are grouped based on their GWA (General Weighted Average) and family income.
                                         </p>
                                     </div>

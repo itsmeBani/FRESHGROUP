@@ -111,7 +111,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
                             .then(res =>   setUser(res))
                     }
 
-                } else if (event === 'PASSWORD_RECOVERY') {
+                }else {
                     setUser(null)
                 }
 
@@ -209,11 +209,14 @@ export function AuthContextProvider({children}: PropsWithChildren) {
     }
 
     const Logout = async () => {
+
         const {error} = await supabase.auth.signOut()
+        console.log(error)
         if (!error) {
-            setUser(null)
+
             toast.success("Logout Successfully")
         }
+        if (error)  toast.error(error?.message)
     }
 
     async function HandleResetPassword(data: z.infer<typeof ResetPasswordFormSchema>) {
@@ -221,6 +224,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
         try {
             const {error} = await supabase.auth
                 .resetPasswordForEmail(data?.email,
+                    // https://freshgroup.vercel.app/
                     {redirectTo: "http://localhost:3000/forgot-password/new-password"}
                 )
 
@@ -248,15 +252,15 @@ export function AuthContextProvider({children}: PropsWithChildren) {
         setLoading((prev) => ({...prev, newPassword: true}));
 
         try {
-            const {data: dataPasswordReset, error} = await supabase.auth.updateUser({
+            const {error} = await supabase.auth.updateUser({
                 password: data?.password
             })
 
-            if (dataPasswordReset) {
-                toast.success("Password Updated")
-            }
+            console.log(error)
             if (error) {
                 toast.error(error.message)
+            }else {
+                    toast.success("Password Updated")
             }
         } catch (e) {
             toast.error("Something Went Wrong")

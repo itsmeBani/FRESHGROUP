@@ -171,27 +171,69 @@ font-style: normal;
 /* Styles for screens 800px and wider */
 
 @media (width <= 1010px) {
+
   .responsive {
 
     position: absolute;
     top: 10px;
-    scale: 0.7;
+
     left: 0px;
+    right: 0px;
   }
   .responsive-bottom {
 
     position: absolute;
     top: -100px;
-    scale: 0.7;
+
     left: 0px;
   }.responsive-top{
        position: absolute;
        top: 10px;
   left: -100px;
-       scale: 1;
+
 
      }
   .responsive-box{
     height: 300px;
+  }
+}
+@media (width <= 1210px) {
+  .responsive {
+
+    position: absolute;
+    top: 10px;
+
+    left: 0px;
+  }
+  .responsive-bottom {
+
+    position: absolute;
+    top: -90px;
+
+    left: 0px;
+  }.responsive-top{
+     position: absolute;
+     top: 10px;
+     left: -100px;
+
+
+   }
+   .parent-box{
+     scale: 0.8;
+   }
+  .responsive-box{
+    height: 250px;
+    top: -100px;
+  }
+}
+
+@media (width <= 910px) {
+
+  .responsive-box{
+    height: 250px;
+    top: -10px;
+  }
+  .parent-box{
+    scale: 0.7;
   }
 }
