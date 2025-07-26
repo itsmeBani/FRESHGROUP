@@ -1,5 +1,5 @@
     
-    import {Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts"
+    import {Bar, BarChart, CartesianGrid, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts"
     import {Users} from "lucide-react";
     
     
@@ -9,6 +9,11 @@
         chartData: TData[];
         barDataKey: string;
     }
+
+
+
+
+
 
     const BAR_COLORS = [
         '#ff4d4f', '#ffa940', '#52c41a', '#d62728',
@@ -21,8 +26,8 @@
                         <div className="h-[300px]  max-h-[400px] w-full">
                             <ResponsiveContainer  width="100%" height="100%">
                                 <BarChart  data={chartData}  margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
-
-                                    <XAxis className="CircularFont  hidden lg:block"
+                                   <CartesianGrid  className="dark:stroke-white/20 stroke-[#212121]/20"  vertical={false}/>
+                                    <XAxis className="CircularFont    hidden lg:block"
                                         dataKey={AxisKey}
                                         tickLine={false}
                                         tickMargin={10}
@@ -30,7 +35,7 @@
                                         axisLine={false}
                                         tickFormatter={(value) => value.slice(0, 11)}
                                     />
-                                    <YAxis  fontSize={10} tickMargin={13} className="CircularFont" />
+                                    <YAxis  fontSize={10} tickMargin={13} className="CircularFont " />
                                     <Tooltip
                                         cursor={false}
                                         content={({ active, payload, label }) => {
@@ -51,7 +56,7 @@
                                         }}
                                     />
                                     <Bar dataKey={barDataKey} radius={[4, 4, 0, 0]}>
-                                        {chartData.map(({}, index) => (
+                                        {chartData?.map(({}, index) => (
                                             <Cell
                                                 key={`cell-${index}`}
                                                 fill={`${BAR_COLORS[index]}90`}
@@ -60,6 +65,7 @@
                                             />
                                         ))}
                                         <LabelList
+
                                             position="top"
                                             offset={12}
                                             fontSize={12}
@@ -82,7 +88,7 @@
         return (
             <g>
 
-                <text x={x + width /2.4} y={y-20} className={"CircularFont"}  dominantBaseline="middle">
+                <text x={x + width /2.4} y={y-20} className={"CircularFont dark:fill-[#fff]"}  dominantBaseline="middle">
                     {value}
                 </text>
             </g>
