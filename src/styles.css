@@ -237,3 +237,53 @@ font-style: normal;
     scale: 0.7;
   }
 }
+
+
+
+
+
+.orb-red {
+
+
+
+  border-radius: 50%;
+  box-shadow:
+  inset 0 0 50px #fff,
+  inset 220px 0 350px #ff6262,
+  inset -20px 0 60px #df6d6d,
+  inset 20px 0 300px #ff6262,
+  inset -20px 0 300px #df6d6d,
+  0 0 0px #fff,
+  -10px 0 150px #ff6262,
+  10px 0 60px #df6d6d;
+}
+
+.orb-blue {
+
+
+  border-radius: 50%;
+  box-shadow:
+          inset 0 0 50px #fff,
+          inset 200px 0 350px #5dade2,       /* light blue */
+          inset -20px 0 60px #3498db,     /* medium blue */
+          inset 20px 0 300px #5dade2,
+          inset -20px 0 300px #3498db,
+          0 0 30px #fff,
+          -10px 0 150px #5dade2,
+          10px 0 60px #3498db;
+}
+
+.orb-yellow {
+
+
+  border-radius: 50%;
+  box-shadow:
+          inset 0 0 50px #fff,
+          inset 20px 0 60px #f7dc6f,       /* light yellow */
+          inset -20px 0 60px #f1c40f,     /* medium yellow */
+          inset 20px 0 300px #f7dc6f,
+          inset -20px 0 300px #f1c40f,
+          0 0 50px #fff,
+          -10px 0 60px #f7dc6f,
+          10px 0 60px #f1c40f;
+}

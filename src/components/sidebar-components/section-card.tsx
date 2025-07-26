@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/card.tsx";
 
 import { MoveRightIcon, TrendingDownIcon, TrendingUp, Users} from "lucide-react";
-import type {ReactNode} from "react";
+import {type ReactNode} from "react";
+import {AnimatedNumber} from "@/components/ui/AnimatedNumber.tsx";
+
+
 
 type StatCard = {
     description: string;
-    value: string;
+    value: number;
     delta: string;
     footerHeadline: string;
     footerSub: string;
@@ -23,7 +26,7 @@ type StatCard = {
 const stats: StatCard[] = [
     {
         description: "Total Student",
-        value: "1,250",
+        value: 1250,
         delta: "+12.5%",
         footerHeadline: "Total students enrolled",
         footerSub: "Across all programs this year",
@@ -32,7 +35,7 @@ const stats: StatCard[] = [
     },
     {
         description: "Low Income",
-        value: "234",
+        value: 233,
         delta: "-20%",
         footerHeadline: "Students in low‑income bracket",
         footerSub: "Family income below set threshold",
@@ -41,7 +44,7 @@ const stats: StatCard[] = [
     },
     {
         description: "Average Income",
-        value: "178",
+        value: 178,
         delta: "+12.5%",
         footerHeadline: "Students in average‑income bracket",
         footerSub: "Family income within median range",
@@ -50,7 +53,7 @@ const stats: StatCard[] = [
     },
     {
         description: "High Income",
-        value: "100",
+        value: 100,
         delta: "+4.5%",
         footerHeadline: "Students in high‑income bracket",
         footerSub: "Family income above set threshold",
@@ -62,6 +65,7 @@ const stats: StatCard[] = [
 
 
 export function SectionCards() {
+
     return (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map(({
@@ -82,7 +86,7 @@ export function SectionCards() {
 
                             </CardAction>
                             <CardTitle className="text-2xl text-white CircularFont font-bolder tabular-nums @[250px]/card:text-3xl">
-                                {value}
+                              <AnimatedNumber value={value}/>
                             </CardTitle>
 
                         </CardHeader>
@@ -96,6 +100,8 @@ export function SectionCards() {
                     </Card>
                 )
             )}
+
+
         </div>
     );
 }

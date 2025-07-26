@@ -88,7 +88,7 @@
         return (
             <g>
 
-                <text x={x + width /2.4} y={y-20} className={"CircularFont dark:fill-[#fff]"}  dominantBaseline="middle">
+                <text x={x + width /2.4} y={y-20} className={"CircularFont font-bold  dark:fill-[#fff]"}  dominantBaseline="middle">
                     {value}
                 </text>
             </g>

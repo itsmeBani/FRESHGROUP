@@ -196,7 +196,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
                 }
                 if (!error) {
                     SignUpForm.reset()
-                    toast.success("Created User")
+                    toast.success("User created. Waiting for approval.");
                 }
             }
 

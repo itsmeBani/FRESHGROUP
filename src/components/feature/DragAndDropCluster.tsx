@@ -118,7 +118,7 @@ function Draggable({id, children}: { id: string; children: React.ReactNode }) {
 
     return (
         <button
-            className={"shadow-xs dark:bg-[#212121] cursor-grab select-none relative pr-3     overflow-hidden flex place-items-center gap-1 px-2 bg-background rounded-sm border-[1.2px] py-2  CircularFont "}
+            className={"shadow-xs dark:bg-[#212121] cursor-grab select-none relative pr-3     overflow-hidden flex place-items-center gap-1 px-2 bg-background rounded-sm border-[1.2px] py-2  CircularFont font-thin "}
 
             ref={setNodeRef}
             style={style}
