@@ -9,7 +9,8 @@ import {
 import {CSS} from '@dnd-kit/utilities';
 import {Button} from "@/components/ui/button.tsx";
 import {GripVertical, RotateCw, Settings} from "lucide-react";
-
+import meme1 from "../../assets/meme1.jpg"
+import meme2 from "../../assets/meme2.jpg"
 function DragAndDropCluster() {
     const items = [
 
@@ -47,6 +48,7 @@ function DragAndDropCluster() {
     const GenerateClusterProfile=async ()=>{
         setLoading(true)
         setTimeout(()=>{
+            setShow(true)
             setLoading(false)
         },3900)
     }
@@ -55,6 +57,8 @@ function DragAndDropCluster() {
     const droppedItems = items.filter((id) => itemLocations[id] === 'drop-zone');
     const undroppedItems = items.filter((id) => itemLocations[id] === null);
 
+
+    const [show,setShow]=useState(false)
     return (
         <div className={"overflow-hidden flex flex-col place-items-start  gap-5 "}>
             <DndContext   onDragEnd={handleDragEnd}>
@@ -100,7 +104,14 @@ function DragAndDropCluster() {
              <Button onClick={()=>setItemLocations(initialValue)}><RotateCw/></Button>
              <Button onClick={GenerateClusterProfile}  className="">{loading ? <><Settings className="animate-spin"/>Generating </>: "Generate Profile"}</Button>
          </div>
-        </div>
+
+
+            {
+                show &&  <div className="flex gap-2">   <img className={"w-[300px]"} src={meme1}/>
+                    <img className={"w-[300px]"} src={meme2}/></div>
+
+            }
+         </div>
     );
 }
 
