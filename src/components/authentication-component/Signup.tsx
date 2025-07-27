@@ -113,7 +113,7 @@ export default function Signup() {
                 </Form>
             </div>
             <motion.div
-                className="orb-red w-[400px] h-[400px] absolute top-0 -right-40"
+                className="orb-red w-[600px] h-[600px] absolute -top-30 -right-40"
                 initial={{ x: randomX, y: randomY, opacity: 0 }}
                 animate={{ x: 0, y: 0, opacity: 1 }}
                 transition={{

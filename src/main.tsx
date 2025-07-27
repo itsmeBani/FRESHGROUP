@@ -22,6 +22,7 @@ import Signup from "@/components/authentication-component/Signup.tsx";
 import PermissionPage from "@/pages/Permissions.tsx";
 import Playground from "@/pages/Playground.tsx";
 import Cluster from "@/pages/Cluster.tsx";
+import NotFoundPage from "@/pages/NotFoundPage.tsx";
 
 
 
@@ -55,7 +56,7 @@ if (rootElement && !rootElement.innerHTML) {
                     element:<Cluster/>,
                 },
             ],
-            errorElement:<>ERROR NOT FOUND</>,
+            errorElement:<NotFoundPage/>,
         },
         {
             path: "/login",
