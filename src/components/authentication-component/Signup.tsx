@@ -45,7 +45,7 @@ export default function Signup() {
                                         <FormItem>
                                             <FormLabel className={"CircularFont"}>Email</FormLabel>
                                             <FormControl>
-                                                <Input className="CircularFont  dark:border-gray-300" placeholder="shadcn" {...field} />
+                                                <Input className="CircularFont  dark:border-gray-300" placeholder="johndoe@gmail.com" {...field} />
                                             </FormControl>
                                             <FormMessage className="text-[12px] "/>
                                         </FormItem>
@@ -62,7 +62,7 @@ export default function Signup() {
                                         <FormItem>
                                             <FormLabel className={"CircularFont"}>Password</FormLabel>
                                             <FormControl>
-                                                <Input className="CircularFont  dark:border-gray-300" placeholder="shadcn" {...field} />
+                                                <Input className="CircularFont  dark:border-gray-300" placeholder="********" {...field} />
                                             </FormControl>
                                             <FormMessage className="text-[12px] "/>
                                         </FormItem>
@@ -79,7 +79,7 @@ export default function Signup() {
                                         <FormItem>
                                             <FormLabel className={"CircularFont"}>Confirm Password</FormLabel>
                                             <FormControl>
-                                                <Input className="CircularFont dark:border-gray-300" placeholder="shadcn" {...field} />
+                                                <Input className="CircularFont dark:border-gray-300" placeholder="********" {...field} />
                                             </FormControl>
                                             <FormMessage className="text-[12px] "/>
                                         </FormItem>

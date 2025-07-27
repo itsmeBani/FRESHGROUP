@@ -45,7 +45,7 @@ export default function Login() {
                                         <FormItem>
                                             <FormLabel className={"CircularFont"}>Email</FormLabel>
                                             <FormControl>
-                                                <Input className="CircularFont" placeholder="shadcn" {...field} />
+                                                <Input className="CircularFont" placeholder="johndoe@gmail.com" {...field} />
                                             </FormControl>
                                             <FormMessage className="text-[12px] "/>
                                         </FormItem>
@@ -73,7 +73,7 @@ export default function Login() {
                                     render={({field}) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input placeholder="shadcn" className="CircularFont" {...field} />
+                                                <Input placeholder="********" className="CircularFont" {...field} />
                                             </FormControl>
                                             <FormMessage className="text-[12px] "/>
                                         </FormItem>
