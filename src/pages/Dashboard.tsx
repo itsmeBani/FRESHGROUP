@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import {ChartNetwork, MoveRightIcon, SlidersHorizontal} from "lucide-react";
 import type {IStudentData} from "@/Types.ts";
 import LoadingState from "@/components/feature/LoadingState.tsx";
+import {ScatterPlotSkeleton, SkeletonSectionCards} from "@/components/skeletonLoaders/skeletonLoaders.tsx";
 
 
 export default function Dashboard() {
@@ -21,12 +22,14 @@ export default function Dashboard() {
     const dimensions = useDimensions(targetRef);
     const WIDTH=dimensions?.width || 0
     const HEIGHT=400
+
     const {data,isPending}=useQuery(fetchClusteredData())
     const [plotData,setPlotData]=useState<IStudentData[]>(data ?? [])
 
     useEffect(()=>{
         if (data) setPlotData(data.slice(0,200))
     },[data])
+
     const SliceDataPlot=(divider:number)=>{
        if (data) setPlotData(data.slice(0,data.length /divider))
     }
@@ -36,11 +39,11 @@ export default function Dashboard() {
             {isPending && <LoadingState/>}
             <div className="flex relative flex-1 flex-col gap-4 p-4">
 
-                <SectionCards/>
+                {data ? <SectionCards/>: <SkeletonSectionCards/>}
                 <section className="grid-cols-1 lg:grid-cols-2 gap-4 h-full grid">
 
                     <div ref={targetRef} className=" grid grid-cols-1 h-full">
-                        {data &&
+                        {data ?
                             <div className="shadow-sm border h-full rounded-lg " >
                                 <div className="flex place-items-center justify-between  p-4 lg:px-6 lg:pt-4">
                                     <div className="lg:pt-4">
@@ -77,9 +80,11 @@ export default function Dashboard() {
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </div>
-                                <RenderScatterPlot width={WIDTH} height={HEIGHT} data={plotData}/>
+                              <div className="h-[400px] w-full">
+                                  <RenderScatterPlot width={WIDTH} height={HEIGHT} data={plotData}/>
 
-                            </div>
+                              </div>
+                            </div> :<ScatterPlotSkeleton/>
                         }
 
 

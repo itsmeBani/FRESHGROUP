@@ -87,6 +87,7 @@ if (rootElement && !rootElement.innerHTML) {
             < QueryClientProvider client={queryClient} >
                 <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
                     <AuthContextProvider>
+
                         <RouterProvider    router={router}/>
                         <Toaster theme={"dark"} position="top-right" richColors={true} />
                     </AuthContextProvider>

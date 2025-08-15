@@ -4,7 +4,7 @@ import {
 
   Command
   , LayoutDashboardIcon,
-  LifeBuoy, PlayIcon,
+  LifeBuoy,
 
   Send, UserLockIcon, Users,
 
@@ -69,13 +69,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
         ],
       },
-      {
-        title: "Playground",
-        url: "/playground",
-        icon: PlayIcon,
-        items: [
-        ],
-      },
+      // {
+      //   title: "Playground",
+      //   url: "/playground",
+      //   icon: PlayIcon,
+      //   items: [
+      //   ],
+      // },
 
       {
         title: "Permission",

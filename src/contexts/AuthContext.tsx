@@ -111,7 +111,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
                             .then(res =>   setUser(res))
                     }
 
-                }else {
+                }else if (event === "PASSWORD_RECOVERY"){
                     setUser(null)
                 }
 
@@ -176,15 +176,14 @@ export function AuthContextProvider({children}: PropsWithChildren) {
 
     async function HandleSignUp(formData: z.infer<typeof SignUpFormSchema>) {
         setLoading((prev) => ({...prev, signUp: true}));
+
         try {
             const {data, error} = await supabase.auth.signUp({
                 email: formData.email,
                 password: formData.password,
             })
             if (error) toast.error(error.message)
-
             if (data.user) {
-
                 const {error} = await supabase
                     .from('user')
                     .insert({
@@ -199,8 +198,6 @@ export function AuthContextProvider({children}: PropsWithChildren) {
                     toast.success("User created. Waiting for approval.");
                 }
             }
-
-
         } catch (e) {
             toast.error("Something Went Wrong")
         } finally {

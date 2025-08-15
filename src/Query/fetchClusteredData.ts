@@ -55,3 +55,14 @@ const getClusteredProfile = async (signal:AbortSignal)=>{
     const response=await axios.get(`${BASE_URL}/cluster-student-profile`,{signal})
     return response.data
 }
+
+// interface FetchProps{
+//     signal?:AbortSignal
+//     url:string
+// }
+// async function FetchData<TReturn>({url,signal}:FetchProps):Promise<TReturn[]> {
+//     const response=await axios.get(`${BASE_URL+url}`,{signal})
+//     return response.data
+//
+// }
+// FecthData<IStudentData>({url:"/clustered-common-program"})

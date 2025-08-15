@@ -9,8 +9,8 @@ import {
 import {CSS} from '@dnd-kit/utilities';
 import {Button} from "@/components/ui/button.tsx";
 import {GripVertical, RotateCw, Settings} from "lucide-react";
-import meme1 from "../../assets/meme1.jpg"
-import meme2 from "../../assets/meme2.jpg"
+import {toast} from "sonner";
+
 function DragAndDropCluster() {
     const items = [
 
@@ -44,23 +44,29 @@ function DragAndDropCluster() {
             [active.id]: over?.id === 'drop-zone' ? 'drop-zone' : null,
         }));
     };
+    const droppedItems = items.filter((id) => itemLocations[id] === 'drop-zone');
+    const undroppedItems = items.filter((id) => itemLocations[id] === null);
 
     const GenerateClusterProfile=async ()=>{
         setLoading(true)
+
+
+        if (droppedItems.length < 2) {
+            return toast.info("Drop two or more field to cluster")
+        }
         setTimeout(()=>{
-            setShow(true)
+
             setLoading(false)
         },3900)
     }
 
 
-    const droppedItems = items.filter((id) => itemLocations[id] === 'drop-zone');
-    const undroppedItems = items.filter((id) => itemLocations[id] === null);
 
 
-    const [show,setShow]=useState(false)
+
     return (
-        <div className={"overflow-hidden flex flex-col place-items-start  gap-5 "}>
+        <div draggable={false} className={"overflow-hidden flex flex-col place-items-start  gap-5 "}>
+            {JSON.stringify(droppedItems)}
             <DndContext   onDragEnd={handleDragEnd}>
 
                 <div style={{height:undroppedItems.length <=0 ? 100 : undefined}} className="flex border-[1.5px]  w-full p-3 rounded-sm  gap-2 place-items-start  flex-wrap">
@@ -71,11 +77,11 @@ function DragAndDropCluster() {
                     ))}
                 </div>
 
-                <div className="w-full h-full">
+                <div className="w-full select-none h-full">
                     <Droppable id="drop-zone">
                         {droppedItems.length === 0 ? (
-                            <div className="text-gray-500 flex place-items-center justify-center  w-full  h-full ">
-                                <div className="flex flex-col place-items-center p-10">
+                            <div  className="select-none text-gray-500 flex place-items-center justify-center  w-full  h-full ">
+                                <div className="flex  flex-col place-items-center p-10">
 
                                     <svg  className="h-30 w-30 fill-[#444] dark:fill-[#fff]"  viewBox="0 0 16 16" version="1.1"
                                          xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -102,15 +108,10 @@ function DragAndDropCluster() {
             </DndContext>
          <div className="flex gap-2 w-full justify-end">
              <Button onClick={()=>setItemLocations(initialValue)}><RotateCw/></Button>
-             <Button onClick={GenerateClusterProfile}  className="">{loading ? <><Settings className="animate-spin"/>Generating </>: "Generate Profile"}</Button>
+             <Button onClick={GenerateClusterProfile}  className="">{loading ? <><Settings className="animate-spin"/>Generating... </>: "Generate Profile"}</Button>
          </div>
 
 
-            {
-                show &&  <div className="flex gap-2">   <img className={"w-[300px]"} src={meme1}/>
-                    <img className={"w-[300px]"} src={meme2}/></div>
-
-            }
          </div>
     );
 }
@@ -149,7 +150,7 @@ function Droppable({id, children}: { id: string; children: React.ReactNode }) {
     return (
         <div
             ref={setNodeRef}
-            className={`min-h-[130px] border-[1.5px] m-[1px] select-none flex  flex-wrap    p-4 rounded  space-x-2 space-y-2 place-items-start  transition-all ${
+            className={`min-h-[130px] select-none border-[1.5px] m-[1px] select-none flex  flex-wrap    p-4 rounded  space-x-2 space-y-2 place-items-start  transition-all ${
                 isOver ? 'ring-[1px] ring-indigo-400' : ''
             }`}
         >
