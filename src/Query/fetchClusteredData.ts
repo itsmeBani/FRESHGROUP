@@ -2,7 +2,7 @@ import {queryOptions} from "@tanstack/react-query";
 import axios from 'axios';
 import type {IStudentData} from "@/Types.ts";
 
-const BASE_URL="https://freshgroup-api.onrender.com"
+const BASE_URL="https://cluster-gpbcemc3hfcyaueq.canadacentral-01.azurewebsites.net"
 
 // http://127.0.0.1:8000
 // https://freshgroup-api.onrender.com/
