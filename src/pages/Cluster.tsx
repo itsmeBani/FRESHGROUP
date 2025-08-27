@@ -15,7 +15,7 @@ function Cluster() {
     const {data,isFetching}=useQuery(fetchClusteredProfile())
     const [clusterIndex,setClusterIndex]=useState<number>(0)
     const studentData:IStudentData[]=data?.[clusterIndex]?.students??[]
-    console.log(data)
+
     const interpretations = [
         {
             cluster: 0,

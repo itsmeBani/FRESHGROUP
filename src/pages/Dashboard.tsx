@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useDimensions} from "@/hooks/useDimension.ts";
 import {useQuery} from "@tanstack/react-query";
 import {fetchClusteredData} from "@/Query/fetchClusteredData.ts";
-import {SectionCards} from "@/components/sidebar-components/section-card.tsx";
+import {DashBoardWidget} from "@/components/sidebar-components/DashboardWidget.tsx";
 import {RenderScatterPlot} from "@/components/charts/ScatterPlot.tsx";
 import {TabChartType} from "@/components/charts/TabChartType.tsx";
 import {
@@ -39,7 +39,7 @@ export default function Dashboard() {
             {isPending && <LoadingState/>}
             <div className="flex relative flex-1 flex-col gap-4 p-4">
 
-                {data ? <SectionCards/>: <SkeletonSectionCards/>}
+                {data ? <DashBoardWidget/>: <SkeletonSectionCards/>}
                 <section className="grid-cols-1 lg:grid-cols-2 gap-4 h-full grid">
 
                     <div ref={targetRef} className=" grid grid-cols-1 h-full">
@@ -89,8 +89,9 @@ export default function Dashboard() {
 
 
                     </div>
+                    {data ?
                     <div className="w-full h-full ">
-                        <div  className=" shadow-sm border rounded-lg ">
+                        <div  className="h-full shadow-sm border rounded-lg ">
                             <div className="px-7 pt-7">
                                 <h1 className="CircularFont dark:text-white text-[#212121]/90 font-bold text-2xl">Category</h1>
 
@@ -99,7 +100,7 @@ export default function Dashboard() {
 
                             <TabChartType/>
                         </div>
-                    </div>
+                    </div> :<ScatterPlotSkeleton/>}
                 </section>
 
             </div>

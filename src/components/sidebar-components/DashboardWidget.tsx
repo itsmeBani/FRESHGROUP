@@ -10,6 +10,9 @@ import {
 import { MoveRightIcon, TrendingDownIcon, TrendingUp, Users} from "lucide-react";
 import {type ReactNode} from "react";
 import {AnimatedNumber} from "@/components/ui/AnimatedNumber.tsx";
+import {useQuery} from "@tanstack/react-query";
+import {fetchClusteredProfile} from "@/Query/fetchClusteredData.ts";
+import type {IStudentData} from "@/Types.ts";
 
 
 
@@ -23,11 +26,20 @@ type StatCard = {
     icon:ReactNode;
 };
 
-const stats: StatCard[] = [
+interface Income {
+    common:IStudentData
+    students:IStudentData[]
+}
+
+
+
+const stats =(lowIncomeData:Income,averageIncomeData:Income,highIncomeData:Income):StatCard[] =>[
     {
         description: "Total Student",
-        value: 1250,
-        delta: "+12.5%",
+        value: (highIncomeData?.students?.length ?? 0)
+            + (lowIncomeData?.students?.length ?? 0)
+            + (averageIncomeData?.students?.length ?? 0),
+         delta: "+12.5%",
         footerHeadline: "Total students enrolled",
         footerSub: "Across all programs this year",
         positive: true,
@@ -35,7 +47,7 @@ const stats: StatCard[] = [
     },
     {
         description: "Low Income",
-        value: 233,
+        value: lowIncomeData?.students?.length ?? 0,
         delta: "-20%",
         footerHeadline: "Students in low‑income bracket",
         footerSub: "Family income below set threshold",
@@ -44,7 +56,7 @@ const stats: StatCard[] = [
     },
     {
         description: "Average Income",
-        value: 178,
+        value:  averageIncomeData?.students?.length ?? 0,
         delta: "+12.5%",
         footerHeadline: "Students in average‑income bracket",
         footerSub: "Family income within median range",
@@ -53,7 +65,7 @@ const stats: StatCard[] = [
     },
     {
         description: "High Income",
-        value: 100,
+        value:  highIncomeData?.students?.length ?? 0,
         delta: "+4.5%",
         footerHeadline: "Students in high‑income bracket",
         footerSub: "Family income above set threshold",
@@ -63,15 +75,17 @@ const stats: StatCard[] = [
 
 ];
 
-
-export function SectionCards() {
-
+export function DashBoardWidget() {
+    const {data}=useQuery(fetchClusteredProfile())
+    const lowIncome=data?.[2]
+    const averageIncome=data?.[1]
+    const highIncome=data?.[0]
+    const statisticalData=stats(lowIncome,averageIncome,highIncome)
     return (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map(({
+            {statisticalData.map(({
                         description,
-                        value,
-                icon,
+                        value,icon,
                         footerHeadline,
                         footerSub}, index
                 ) => (

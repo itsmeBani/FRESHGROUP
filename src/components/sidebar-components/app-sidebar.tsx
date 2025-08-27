@@ -1,9 +1,7 @@
 import * as React from "react"
 import {
   ChartNetwork,
-
-  Command
-  , LayoutDashboardIcon,
+  LayoutDashboardIcon,
   LifeBuoy,
 
   Send, UserLockIcon, Users,
@@ -23,7 +21,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar.tsx"
 import {useAuth} from "@/contexts/AuthContext.tsx";
-
+import  LOGO from "../../../public/logo.svg"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
@@ -112,12 +110,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Command className="size-4" />
+                <div className=" text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <img src={LOGO} alt={"FreshGroup"}/>
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">FreshGroup</span>
-                  <span className="truncate text-xs">HAHHAHAH</span>
+                  <span className="truncate text-xs">Clustering</span>
 
                 </div>
               </a>

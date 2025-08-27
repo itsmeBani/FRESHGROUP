@@ -104,11 +104,13 @@ import {
     CartesianGrid,
     Tooltip,
     Cell,
-    ResponsiveContainer,
+    ResponsiveContainer, type TooltipProps,
 } from 'recharts';
 import type { IStudentData } from "@/Types.ts";
 import type {ScatterPointItem} from "recharts/types/cartesian/Scatter";
 import type {SVGAttributes} from "react";
+import type {NameType, ValueType} from "recharts/types/component/DefaultTooltipContent";
+
 
 // Colors for each data point
 const COLORS = ['#ff4d4f', '#ffa940', '#52c41a'];
@@ -152,6 +154,32 @@ export const RenderScatterPlot = ({ width, height, data }: ScatterPlotProps) => 
     //
     const yExtent = niceExtent(yExtentRaw[0] - yPad, yExtentRaw[1] + yPad);
 
+    const CustomTooltip = ({ active, payload } :TooltipProps<ValueType, NameType>) => {
+        const isVisible = active && payload && payload.length;
+        return (
+            <div className="bg-white dark:bg-[#191919] dark:border-white/60 p-3 rounded-md border-1 border-black/60" style={{ visibility: isVisible ? 'visible' : 'hidden' }}>
+                {isVisible && (
+                    <div className={"flex gap-5"}>
+
+
+                         <div >
+
+                             <h1 className="flex font-thin CircularFont  dark:text-white/80 text-md  place-items-center gap-1">12,3090</h1>
+                             <p className="CircularFont text-black/60 text-xs dark:text-white/60  font-thin">FAMILY INCOME</p>
+                         </div>
+                        <div>
+                            <h1 className={"flex font-thin CircularFont  dark:text-white/80  text-md place-items-center gap-1 text-center"}>93</h1>
+                            <p className="CircularFont text-black/60 text-xs dark:text-white/60  font-thin">GWA</p>
+                        </div>
+                        {/*<p className="label CircularFont font-midium">{`Family Income : ${payload[0].value}`}</p>*/}
+                        {/*<p className="label CircularFont font-midium">{`GWA : ${payload[1]?.value}`}</p>*/}
+
+
+                    </div>
+                )}
+            </div>
+        );
+    };
     return (
         <ResponsiveContainer width="100%" height="100%">
             <ScatterChart
@@ -160,19 +188,20 @@ export const RenderScatterPlot = ({ width, height, data }: ScatterPlotProps) => 
                 margin={{ top: 20, right: 40, bottom: 20, left: 0 }}
             >
                 <CartesianGrid />
-                <XAxis  tick={{ fill: '#000000', fontSize: 15, fontFamily: 'CircularFont' }}
+                <XAxis className=" fill-red-5"  tick={{fontSize: 13, fontFamily: 'CircularFont' }}
                        type="number"
                     dataKey="FamilyIncome"
                     name="Family Income"
 
                 />
-                <YAxis  tick={{ fill: '#000000', fontSize: 15, fontFamily: 'CircularFont' }}
+                <YAxis  tick={{fontSize: 13, fontFamily: 'CircularFont' }}
                     type="number"
                     dataKey="Grade12GWA"
                     name="Grade 12 GWA"
                     domain={yExtent}
                 />
-                <Tooltip />
+                <Tooltip content={({active,payload,label})=><CustomTooltip label={label} active={active} payload={payload}/> } />
+
                     <Scatter name="Students" data={data} shape={<CustomCircle  />}>
                     {data.map((entry, index) => (
                         <Cell key={`cell-${index}`} stroke={COLORS[entry?.cluster]}  fill={COLORS[entry?.cluster]}  />

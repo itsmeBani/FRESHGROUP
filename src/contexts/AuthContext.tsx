@@ -100,7 +100,6 @@ export function AuthContextProvider({children}: PropsWithChildren) {
     }
 
     useEffect(() => {
-
         const {data: {subscription}} = supabase.auth.onAuthStateChange(
             (event, session) => {
                 if (event === 'INITIAL_SESSION') {
@@ -120,6 +119,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
             subscription.unsubscribe()
         }
     }, [])
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -209,7 +209,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
         const {error} = await supabase.auth.signOut({ scope: 'local' })
         console.log(error)
         if (!error) {
-
+            setUser(null)
             toast.success("Logout Successfully")
         }
         if (error)  toast.error(error?.message)

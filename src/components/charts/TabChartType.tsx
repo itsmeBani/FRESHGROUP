@@ -108,9 +108,9 @@ export function TabChartType() {
                     {Tab?.map(({icon,value},index)=><TabsTrigger key={index} value={value}>{icon}</TabsTrigger>)}
                 </TabsList>
 
-                {Tab?.map(({value,component,description})=>{
+                {Tab?.map(({value,component,description},index)=>{
                     return (
-                        <TabsContent value={value}>
+                        <TabsContent key={index} value={value}>
                             <p className="text-sm  px-4 mb-2">{description}</p>
                             {component}
                         </TabsContent>
