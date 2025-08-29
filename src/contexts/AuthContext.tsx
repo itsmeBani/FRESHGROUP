@@ -8,6 +8,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {toast} from "sonner";
 import {CreatePasswordFormSchema, FormSchema, ResetPasswordFormSchema, SignUpFormSchema} from "@/FormSchema";
 import type { USER } from "@/Types";
+import {FORGOT_PASSWORD_REDIRECT_URI} from "../../constant.ts";
 
 
 type LoadingState = {
@@ -221,7 +222,7 @@ export function AuthContextProvider({children}: PropsWithChildren) {
             const {error} = await supabase.auth
                 .resetPasswordForEmail(data?.email,
                     // https://freshgroup.vercel.app/
-                    {redirectTo: "http://localhost:3000/forgot-password/new-password"}
+                    {redirectTo: FORGOT_PASSWORD_REDIRECT_URI}
                 )
 
             if (error) toast.warning(error.message)

@@ -1,11 +1,8 @@
 import {queryOptions} from "@tanstack/react-query";
 import axios from 'axios';
 import type {IStudentData} from "@/Types.ts";
+import {FAST_API_BASE_URL} from "../../constant.ts";
 
-const BASE_URL="https://cluster-gpbcemc3hfcyaueq.canadacentral-01.azurewebsites.net"
-
-// http://127.0.0.1:8000
-// https://freshgroup-api.onrender.com/
 
 export function fetchClusteredData (){
     return queryOptions({
@@ -38,20 +35,20 @@ export function fetchClusteredProfile(){
     })
 }
 const getClusterData:()=>Promise<IStudentData[]>  = async ()=>{
-      const response=await axios.get(`${BASE_URL}/clustered-student-data`)
+      const response=await axios.get(`${FAST_API_BASE_URL}/clustered-student-data`)
       return response.data
 }
 const getFamilyIncome = async ()=>{
-    const response=await axios.get(`${BASE_URL}/clustered-family-income`)
+    const response=await axios.get(`${FAST_API_BASE_URL}/clustered-family-income`)
     return response.data
 }
 
 const getCommonProgram = async ()=>{
-    const response=await axios.get(`${BASE_URL}/clustered-common-program`)
+    const response=await axios.get(`${FAST_API_BASE_URL}/clustered-common-program`)
     return response.data
 }
 
 const getClusteredProfile = async (signal:AbortSignal)=>{
-    const response=await axios.get(`${BASE_URL}/cluster-student-profile`,{signal})
+    const response=await axios.get(`${FAST_API_BASE_URL}/cluster-student-profile`,{signal})
     return response.data
 }
