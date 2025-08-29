@@ -143,7 +143,7 @@ export default function StudentDataTable<TData, TValue>({columns,visibleFeature,
 
                </div>
 
-                {visibleFeature.export_pdf && <ExportCSV data={ExportedCsvData} fileName={"test.csv"}/>}
+                {visibleFeature.export_pdf && <ExportCSV data={ExportedCsvData} />}
 
                 {visibleFeature.import_pdf && (hasPermission(user,"INSERT:CSV") && <ImportCsvFile/>)}
 
