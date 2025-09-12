@@ -25,7 +25,7 @@
     
                         <div className="h-[300px]  max-h-[400px] w-full">
                             <ResponsiveContainer  width="100%" height="100%">
-                                <BarChart  data={chartData}  margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
+                                <BarChart   data={chartData}  margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
                                    <CartesianGrid  className="dark:stroke-white/20 stroke-[#212121]/20"  vertical={false}/>
                                     <XAxis className="CircularFont    hidden lg:block"
                                         dataKey={AxisKey}

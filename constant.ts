@@ -15,8 +15,9 @@ export const FORGOT_PASSWORD_REDIRECT_URI = "https://freshgroup.vercel.app/forgo
 /**
  * Base URL for the backend API.
  * Use the appropriate URL depending on the environment:
- * - Local development: http://127.0.0.1:8000
+- Local development: http://127.0.0.1:8000
  * - Backup / staging: https://freshgroup-api.onrender.com/
- * - Production (current): Azure deployment
+ * - Production (current):https://cluster-gpbcemc3hfcyaueq.canadacentral-01.azurewebsites.net
+
  */
-export const FAST_API_BASE_URL = "https://cluster-gpbcemc3hfcyaueq.canadacentral-01.azurewebsites.net";
+export const FAST_API_BASE_URL = "https://freshgroup-api.onrender.com";

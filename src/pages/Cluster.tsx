@@ -68,7 +68,7 @@ function Cluster() {
                     </div>
 
 
-            <StudentDataTable visibleFeature={{export_pdf:true,import_pdf:false}}  columns={columns()} hideColumns={{actions:false}} data={studentData}/>
+            <StudentDataTable visibleFeature={{export_pdf:true,import_pdf:false}}  columns={columns({})} hideColumns={{actions:false}} data={studentData}/>
 
         </section>
     );

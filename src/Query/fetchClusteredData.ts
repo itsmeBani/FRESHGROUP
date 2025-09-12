@@ -6,7 +6,7 @@ import {FAST_API_BASE_URL} from "../../constant.ts";
 
 export function fetchClusteredData (){
     return queryOptions({
-        queryKey:["clustered-data"],
+        queryKey:["clustered-student-data"],
         queryFn:getClusterData
     })
 }

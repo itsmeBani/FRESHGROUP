@@ -17,8 +17,10 @@ import {
 import {Checkbox} from "@/components/ui/checkbox.tsx";
 
 
-
-export const columns = (): ColumnDef<IStudentData>[] => useMemo(() => [
+interface ColumnProps{
+    OpenDeleteModal?:(id:string)=>void
+}
+export const columns = ({OpenDeleteModal}:ColumnProps): ColumnDef<IStudentData>[] => useMemo(() => [
     {
         id: "select",
         header: ({table}) => (
@@ -117,7 +119,7 @@ export const columns = (): ColumnDef<IStudentData>[] => useMemo(() => [
     {
         id: "actions",
         header: "Actions",
-        cell:  () => {
+        cell:  ({row}) => {
 
 
             return (
@@ -136,7 +138,7 @@ export const columns = (): ColumnDef<IStudentData>[] => useMemo(() => [
                         <DropdownMenuSeparator/>
                         <DropdownMenuItem><EyeIcon/>View Student</DropdownMenuItem>
                         <DropdownMenuItem><PencilIcon/>Edit Student</DropdownMenuItem>
-                        <DropdownMenuItem><Trash2/>Delete Student</DropdownMenuItem>
+                        <DropdownMenuItem onClick={()=> OpenDeleteModal ? OpenDeleteModal(row.original.ID) : null} variant={"destructive"}><Trash2/>Delete Student</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

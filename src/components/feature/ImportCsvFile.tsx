@@ -148,7 +148,7 @@ export function ImportCsvFile() {
                     <SheetTitle className="CircularFont text-lg">Upload CSV</SheetTitle>
                     <SheetDescription className="">
                         Upload a CSV or TSV file. The first row should be the headers of the table, and your headers should not include any special characters other than hyphens (-) or underscores (_).
-                        Tip: Datetime columns should be formatted as YYYY-MM-DD HH:mm:ss
+
                     </SheetDescription>
                 </SheetHeader>
                 <div className="grid flex-1 auto-rows-min gap-6 px-4">
